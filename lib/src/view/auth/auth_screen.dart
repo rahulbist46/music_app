@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/src/services/cubit/is_sign_up_cubit.dart';
 import 'package:music_app/src/services/cubit/password_fields_cubit.dart';
 import 'package:music_app/src/services/cubit/theme_service.dart';
+import 'package:music_app/src/utilities/navigation.dart';
 import 'package:music_app/src/utilities/scale.dart';
 import 'package:music_app/src/utilities/string.dart';
 import 'package:music_app/src/utilities/theme/theme_colors.dart';
@@ -16,6 +17,7 @@ import 'package:music_app/src/view/auth/auth_top_row.dart';
 part 'additional_sign_up_details.dart';
 part 'auth_button.dart';
 part 'email_and_password.dart';
+part 'skip_button_row.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -65,25 +67,25 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                       padding: EdgeInsets.all(16.toScale),
                       children: [
                         SizedBox(height: Scale.screenHeight * 0.01),
-                        // const _SkipButtonRow(),
+                        const _SkipButtonRow(),
                         const AuthTopRow(),
                         SizedBox(height: Scale.screenHeight * 0.04),
                         // const LogoWithName(),
                         SizedBox(height: Scale.screenHeight * 0.04),
                         NormalAndBoldText(
-                          normalText: isSignUp ? 'Create an ' : 'Login ',
-                          boldText: isSignUp ? 'Account!' : '',
+                          normalText: isSignUp ? 'Sign Up ' : 'Log In ',
+                          boldText: isSignUp ? '' : '',
                           normalStyle: ThemeService.headline4.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         SizedBox(height: Scale.screenHeight * 0.005),
-                        // Text(
-                        //   isSignUp
-                        //       ? Strings.signUpSubtitle
-                        //       : Strings.signInSubtitle,
-                        //   style: ThemeService.bodyText1,
-                        // ),
+                        Text(
+                          isSignUp
+                              ? Strings.signUpSubtitle
+                              : Strings.signInSubtitle,
+                          style: ThemeService.bodyText1,
+                        ),
                         SizedBox(height: Scale.screenHeight * 0.02),
                         if (isSignUp) const _AdditionalSignUpDetails(),
                         // FadeTransition(
@@ -98,28 +100,27 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                         ],
                         SizedBox(height: Scale.screenHeight * 0.04),
                         const _AuthButton(),
-                        // SizedBox(height: Scale.screenHeight * 0.02),
+                        SizedBox(height: Scale.screenHeight * 0.02),
                         // const OrDivider(),
-                        // SizedBox(height: Scale.screenHeight * 0.03),
+                        SizedBox(height: Scale.screenHeight * 0.03),
                         // const GoogleSignInButton(),
-                        // SizedBox(height: Scale.screenHeight * 0.02),
-                        // Center(
-                        //   child: NormalAndBoldText(
-                        //     normalText: isSignUp
-                        //         ? Strings.alreadyHaveAnAccount
-                        //         : Strings.dontHaveAnAccount,
-                        //     normalStyle: ThemeService.bodyText1,
-                        //     boldText:
-                        //         isSignUp ? Strings.login : Strings.signUp,
-                        //     boldStyle: ThemeService.bodyText1.copyWith(
-                        //       fontWeight: FontWeight.w600,
-                        //     ),
-                        //     onBoldTap: () {
-                        //       context.read<IsSignUpCubit>().change();
-                        //       authBloc.clear();
-                        //     },
-                        //   ),
-                        // ),
+                        SizedBox(height: Scale.screenHeight * 0.02),
+                        Center(
+                          child: NormalAndBoldText(
+                            normalText: isSignUp
+                                ? Strings.alreadyHaveAnAccount
+                                : Strings.dontHaveAnAccount,
+                            normalStyle: ThemeService.bodyText1,
+                            boldText: isSignUp ? Strings.login : Strings.signUp,
+                            boldStyle: ThemeService.bodyText1.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                            onBoldTap: () {
+                              context.read<IsSignUpCubit>().change();
+                              // authBloc.clear();
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),

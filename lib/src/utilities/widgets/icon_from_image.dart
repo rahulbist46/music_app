@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:music_app/src/utilities/scale.dart';
+
+class IconFromImage extends StatelessWidget {
+  const IconFromImage(
+    this.icon, {
+    super.key,
+    this.color,
+    this.size,
+  });
+
+  final String icon;
+  final double? size;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      icon,
+      height: (size ?? 22).toScale,
+      width: (size ?? 22).toScale,
+      color: color,
+      fit: BoxFit.fitHeight,
+    );
+  }
+}

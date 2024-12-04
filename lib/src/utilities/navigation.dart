@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/src/services/cubit/onBoardCubit.dart';
 import 'package:music_app/src/utilities/pref_keys.dart';
 import 'package:music_app/src/services/storage_service.dart';
+import 'package:music_app/src/view/app_page.dart';
 import 'package:music_app/src/view/auth/auth_screen.dart';
 import 'package:music_app/src/view/splash/splash_screen.dart';
 
@@ -12,6 +13,7 @@ class Navigation extends NavigatorObserver {
   static const String splashScreen = "/";
   static const String onBoardingScreen = '/on-boarding';
   static const String authScreen = '/AuthScreen';
+  static const String appPage = '/app-page';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -23,6 +25,12 @@ class Navigation extends NavigatorObserver {
           builder: (_) => const AuthScreen(),
           settings: settings,
         );
+      case appPage:
+        return MaterialPageRoute(
+          builder: (_) => const AppPage(),
+          settings: settings,
+        );
+
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

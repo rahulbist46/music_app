@@ -64,7 +64,7 @@ class SpotifyScreen extends StatelessWidget {
                 Button(
                   width: Scale.screenWidht * 0.3,
                   onTap: () {
-                    // context.read<IsSignUpCubit>().change();
+                    context.read<IsSignUpCubit>().change(value: false);
 
                     Navigator.pushNamed(context, Navigation.authScreen);
                   },
@@ -74,7 +74,7 @@ class SpotifyScreen extends StatelessWidget {
                 Button(
                   border: Border.all(color: ColorPallet.greyBorderColor),
                   onTap: () {
-                    context.read<IsSignUpCubit>().change();
+                    context.read<IsSignUpCubit>().change(value: true);
                     Navigator.pushNamed(context, Navigation.authScreen);
                   },
                   width: Scale.screenWidht * 0.3,

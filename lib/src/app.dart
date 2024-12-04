@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/src/services/cubit/is_sign_up_cubit.dart';
 import 'package:music_app/src/services/cubit/password_fields_cubit.dart';
 import 'package:music_app/src/services/cubit/theme_service.dart';
+import 'package:music_app/src/utilities/dialog/dialog_service.dart';
 import 'package:music_app/src/utilities/keys.dart';
 import 'package:music_app/src/utilities/navigation.dart';
 import 'package:music_app/src/utilities/string.dart';
@@ -45,6 +46,9 @@ class _AppState extends State<App> with TickerProviderStateMixin {
         ),
         BlocProvider<PasswordFieldsCubit>(
           create: (BuildContext context) => PasswordFieldsCubit(),
+        ),
+        BlocProvider<DialogService>(
+          create: (BuildContext context) => DialogService.instance,
         ),
       ],
       child: BlocBuilder<ThemeService, ThemeMode>(

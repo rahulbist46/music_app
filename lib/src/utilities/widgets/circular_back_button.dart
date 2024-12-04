@@ -5,27 +5,31 @@ import 'package:music_app/src/utilities/theme/theme_colors.dart';
 import 'package:music_app/src/utilities/widgets/hero_tags.dart';
 
 class CircularBackButton extends StatelessWidget {
+  const CircularBackButton({
+    super.key,
+    this.color,
+    this.margin,
+    this.customCallback,
+    this.tag,
+    this.iconColor,
+    this.elevation,
+  });
+
   final Color? color;
   final EdgeInsetsGeometry? margin;
   final String? tag;
   final Color? iconColor;
   final double? elevation;
+
+  // Note that the default Navigator.pop() will not work if you pass this value
   final VoidCallback? customCallback;
-  const CircularBackButton(
-      {super.key,
-      this.color,
-      this.margin,
-      this.tag,
-      this.iconColor,
-      this.elevation,
-      this.customCallback});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
       margin: margin,
       alignment: Alignment.topLeft,
+      // width: Scale.screenWidth * 0.12,
       child: FloatingActionButton(
         shape: const CircleBorder(),
         onPressed: customCallback ?? () => Navigator.pop(context),
